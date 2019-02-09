@@ -1,0 +1,12 @@
+{
+  "name": "pretty-print",
+  "version": "1.0.0",
+  "description": "",
+  "main": "prettyPrint.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}
