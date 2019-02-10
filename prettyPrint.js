@@ -51,16 +51,20 @@ function generateColumns(keys, jsonObject){
     });
 }
 
+function fetchData(url){
+    return fetch(url).then((res)=>{
+        return res.json();
+    })
+}
 
 function init(url){
-    fetch(url)
+    fetchData(url)
         .then((res)=>{
-            res.json().then((data)=>{
-                prettyPrint(data)
-            })
+            prettyPrint(res)
         })
         .catch((error)=>{
             console.log("something went wrong",error)
+            document.querySelector('#root').innerHTML = "Seems like there was some issue. Please try reloading or checking your network."
         })
 }
 
