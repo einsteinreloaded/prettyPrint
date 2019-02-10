@@ -1,17 +1,26 @@
 class PrettyPrinter {
+
     createTable(jsonObjects){
-        let headerKeys = Object.keys(jsonObjects[0]);
-        let table = document.createElement('table')
-        table.append(
-                this.generateTableHeader(headerKeys),
-                this.generateTableBody(headerKeys,jsonObjects)
-        );
-        return table;
+        if(jsonObjects && jsonObjects.length>0){
+            let headerKeys = Object.keys(jsonObjects[0]);
+            let table = document.createElement('table')
+            table.append(
+                    this.generateTableHeader(headerKeys),
+                    this.generateTableBody(headerKeys,jsonObjects)
+            );
+            return table;
+        }
+        return 0;
     }
 
-    prettyPrint(jsonObjects){
+    prettyPrint(jsonObjects,el){
         let table = this.createTable(jsonObjects);
-        document.querySelector('#root').append(table);
+        if (!table){
+            table = "There is no data to display";
+        }
+        let root = document.querySelector(el);
+        root.innerHTML = '';
+        root.append(table);
     }
 
     generateTableHeader(keys){
@@ -55,14 +64,14 @@ class PrettyPrinter {
         })
     }
 
-    init(url){
+    init(url, el){
         this.fetchData(url)
             .then((res)=>{
-                this.prettyPrint(res)
+                this.prettyPrint(res, el)
             })
             .catch((error)=>{
                 console.log("something went wrong",error)
-                document.querySelector('#root').innerHTML = "Seems like there was some issue. Please try reloading or checking your network."
+                document.querySelector(el).innerHTML = "Seems like there was some issue. Please try reloading or checking your network."
             })
     }
 }

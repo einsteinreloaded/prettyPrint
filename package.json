@@ -4,7 +4,7 @@
   "description": "",
   "main": "prettyPrint.js",
   "scripts": {
-    "start": "node index.js",
+    "start": "npm run build && node index.js",
     "dev": "parcel index.html",
     "build": "parcel build index.html",
     "test": "ava"

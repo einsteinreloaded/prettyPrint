@@ -88,3 +88,13 @@ test('the number of rows excluding header is equal to number of json objects in 
     let table = t.context.prettyprinter.createTable(jsonObjects);
     t.is(table.tBodies[0].childElementCount, jsonObjects.length); // Assertion
 });
+
+test('the table is not created when json objects array is empty', t => {
+    let table = t.context.prettyprinter.createTable([]);
+    t.is(table,0); // Assertion
+});
+
+test('the table is not created when json objects array is null', t => {
+    let table = t.context.prettyprinter.createTable([]);
+    t.is(table,0); // Assertion
+});
